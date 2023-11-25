@@ -42,8 +42,8 @@ export class BoardsController {
     return this.boardService.updateBoardStatus(id, dto);
   }
 
-  @Delete()
+  @Delete('/:id')
   deleteBoardById(@Param('id') id: string) {
-    return this.boardService.deleteBoardById(id);
+    this.boardService.deleteBoardById(id);
   }
 }
