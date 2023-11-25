@@ -5,10 +5,14 @@ import { CreateBoardDto } from './dto/create-board.dto';
 
 @Injectable()
 export class BoardsService {
-  private boards: Board[] = [];
+  private boards = new Map<string, Board>();
 
   getAllBoards() {
-    return this.boards;
+    return Array.from(this.boards.values());
+  }
+
+  getBoardById(boardId: string) {
+    return this.boards.get(boardId);
   }
 
   createBoard(createBoard: CreateBoardDto) {
@@ -18,7 +22,7 @@ export class BoardsService {
       description: createBoard.description,
       status: BoardStatus.PUBLIC,
     };
-    this.boards.push(board);
+    this.boards.set(board.id, board);
     return board;
   }
 }
