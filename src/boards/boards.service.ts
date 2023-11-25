@@ -5,6 +5,9 @@ import { CreateBoardDto } from './dto/create-board.dto';
 
 @Injectable()
 export class BoardsService {
+  deleteBoardById(id: string): void {
+    this.boards.delete(id);
+  }
   private boards = new Map<string, Board>();
 
   getAllBoards() {
